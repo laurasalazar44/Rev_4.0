@@ -25,12 +25,29 @@ robot = Button(raiz, image = rob, width = 140, height= 125,  command = lambda: i
 micanvas.create_window(700, 350, anchor = CENTER, window = robot)
 sal= Button(raiz, width = 7, height= 2, anchor = CENTER, text = "Salir", command = lambda: salir(), font = ("Arial", "15"), bg = "indian red")
 micanvas.create_window(7*width/8, 540, window = sal, anchor = CENTER)
-proto = Button (raiz,width = 10, height= 2, anchor = CENTER, text = "Prototipo",font = ("Arial", "15"), bg = "forest green")
+proto = Button (raiz,width = 10, height= 2, anchor = CENTER, text = "Prototipo",command = lambda: prot(micanvas), font = ("Arial", "15"), bg = "forest green")
 micanvas.create_window(1*width/8, 540, window = proto, anchor = CENTER)
 def salir():
     """ Cierra la pestaña.
         """
     raiz.quit()
+
+def prot(micanvas):
+    global rob1
+    global rob2
+    global rob3
+    micanvas.pack_forget()
+    canvas1 = Canvas(raiz, bg = "lightgreen", width = width, height = height)
+    canvas1.create_text(width/2, 50, text = "ROBOT RECOLECTOR", anchor = CENTER, font = ("Times", "38", "bold"), fill = "forest green")
+    rob1 = PhotoImage(file = 'Isometrica.png')
+    canvas1.create_image(2*width/5,2.5*height/6, anchor=CENTER, image=rob1)
+    rob2 = PhotoImage(file = 'Derecha.png')
+    canvas1.create_image(3*width/5,2.5*height/6, anchor=CENTER, image=rob2)
+    rob3 = PhotoImage(file = 'inferior.png')
+    canvas1.create_image(2.5*width/5,5.5*height/7, anchor=CENTER, image=rob3)
+    canvas1.pack()
+    atras = Button(raiz, width = 7, height= 2, anchor = CENTER, text = "Atrás", command = lambda: atras1(canvas1), font = ("Arial", "15"), bg = "indian red" )
+    canvas1.create_window(1*width/8, 7*height/8, window = atras, anchor = CENTER)
 
 def img_r():
     global fondo1
